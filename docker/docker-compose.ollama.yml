@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama
+    restart: unless-stopped
+    privileged: true  # This ensures the container has the necessary permissions
+    volumes:
+      - ollama_data:/root/.ollama
+    ports:
+      - 11434:11434
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
+    environment:
+      # These environment variables are crucial for GPU access
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+      USE_GPU: 1  # Add this if Ollama supports a flag like this
+    runtime: nvidia  # Specify the NVIDIA runtime for GPU access
+    networks:
+      - app_network
+
+
+volumes:
+  ollama_data:
+    external: true
+
+networks:
+  app_network:
+    external: true

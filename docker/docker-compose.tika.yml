@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  tika:
+    image: apache/tika:latest-full
+    container_name: tika
+    restart: unless-stopped
+    ports:
+      - "9998:9998"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    external: true
+

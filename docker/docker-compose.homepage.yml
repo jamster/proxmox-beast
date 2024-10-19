@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  homepage:
+    image: nginx:alpine
+    container_name: homepage
+    restart: unless-stopped
+    volumes:
+      - /data/homepage:/usr/share/nginx/html:ro
+    expose:
+      - "80"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    external: true
+

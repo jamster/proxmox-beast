@@ -1,0 +1,62 @@
+version: "3.8"
+
+services:
+  redis:
+    container_name: redis
+    image: redis:7-alpine
+    command: redis-server --save 30 1 --loglevel warning
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    cap_drop:
+      - ALL
+    cap_add:
+      - SETGID
+      - SETUID
+      - DAC_OVERRIDE
+    logging:
+      driver: json-file
+      options:
+        max-size: 4m
+        max-file: "1"
+    networks:
+      - app_network
+
+  searxng:
+    container_name: searxng
+    image: searxng/searxng:latest
+    restart: unless-stopped
+    ports:
+      - "7777:8080"
+    volumes:
+      - /data/searxng/img:/usr/local/searxng/searx/static/themes/simple/img:rw
+      - /data/searxng/config:/etc/searxng:rw
+    environment:
+      - SEARXNG_BASE_URL=${SEARXNG_BASE_URL}
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    logging:
+      driver: json-file
+      options:
+        max-size: 4m
+        max-file: "1"
+    depends_on:
+      - redis
+    networks:
+      - app_network
+      - proxy_network
+
+volumes:
+  redis_data:
+    external: true
+
+networks:
+  app_network:
+    external: true
+  proxy_network:
+    external: true
+
