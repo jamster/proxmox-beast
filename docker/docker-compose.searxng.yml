@@ -35,6 +35,7 @@ services:
     user: "1000:1000"
     environment:
       - SEARXNG_BASE_URL=${SEARXNG_BASE_URL}
+      - SEARXNG_SETTINGS_PATH=/etc/searxng/settings.yml
     cap_drop:
       - ALL
     cap_add:
