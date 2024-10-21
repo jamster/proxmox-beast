@@ -28,7 +28,8 @@ docker volume create --driver local --opt type=none --opt device=/data/n8n --opt
 docker volume create --driver local --opt type=none --opt device=/data/nginx/data --opt o=bind nginx_data
 docker volume create --driver local --opt type=none --opt device=/data/nginx/letsencrypt --opt o=bind nginx_letsencrypt
 docker volume create --driver local --opt type=none --opt device=/data/dockage --opt o=bind dockage
-docker volume create --driver local --opt type=none --opt device=/data/portianer --opt o=bind dockage
+docker volume create --driver local --opt type=none --opt device=/data/homepage --opt o=bind homepage
+docker volume create --driver local --opt type=none --opt device=/data/portainer --opt o=bind portianer
 
 # Pull Docker images
 docker compose -f docker-compose.ollama.yml pull
