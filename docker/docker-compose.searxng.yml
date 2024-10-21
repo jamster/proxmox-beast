@@ -8,6 +8,7 @@ services:
     restart: unless-stopped
     volumes:
       - redis_data:/data
+    user: "1000:1000"
     cap_drop:
       - ALL
     cap_add:
@@ -31,6 +32,7 @@ services:
     volumes:
       - /data/searxng/img:/usr/local/searxng/searx/static/themes/simple/img:rw
       - /data/searxng/config:/etc/searxng:rw
+    user: "1000:1000"
     environment:
       - SEARXNG_BASE_URL=${SEARXNG_BASE_URL}
     cap_drop:
