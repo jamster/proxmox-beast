@@ -9,7 +9,7 @@ sudo mkdir -p /data/searxng/config
 sudo mkdir -p /data/n8n
 sudo mkdir -p /data/nginx/data
 sudo mkdir -p /data/nginx/letsencrypt
-sudo mkdir -p /data/dockage
+sudo mkdir -p /data/dockage/opt/stacks
 sudo mkdir -p /data/homepage
 sudo mkdir -p /data/portainer
 
@@ -27,9 +27,6 @@ docker volume create --driver local --opt type=none --opt device=/data/searxng/r
 docker volume create --driver local --opt type=none --opt device=/data/n8n --opt o=bind n8n_data
 docker volume create --driver local --opt type=none --opt device=/data/nginx/data --opt o=bind nginx_data
 docker volume create --driver local --opt type=none --opt device=/data/nginx/letsencrypt --opt o=bind nginx_letsencrypt
-docker volume create --driver local --opt type=none --opt device=/data/dockage --opt o=bind dockage
-docker volume create --driver local --opt type=none --opt device=/data/homepage --opt o=bind homepage
-docker volume create --driver local --opt type=none --opt device=/data/portainer --opt o=bind portianer
 
 # Pull Docker images
 docker compose -f docker-compose.ollama.yml pull
@@ -39,6 +36,8 @@ docker compose -f docker-compose.tika.yml pull
 docker compose -f docker-compose.n8n.yml pull
 docker compose -f docker-compose.nginx.yml pull
 docker compose -f docker-compose.dockage.yml pull
+docker compose -f docker-compose.homepage.yml pull
+docker compose -f docker-compose.portainer.yml pull
 
 # Start all services
 docker compose -f docker-compose.yml \
@@ -48,5 +47,7 @@ docker compose -f docker-compose.yml \
                -f docker-compose.searxng.yml \
                -f docker-compose.tika.yml \
                -f docker-compose.n8n.yml \
-               -f docker-compose.nginx.yml up -d
+               -f docker-compose.nginx.yml \
+               -f docker-compose.homepage.yml \
+               -f docker-compose.portainer.yml up -d
 
