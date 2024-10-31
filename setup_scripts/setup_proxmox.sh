@@ -9,8 +9,13 @@ apt update
 # Install Proxmox VE headers
 apt install -y pve-headers-$(uname -r)
 
+
+
 # Install necessary packages
 apt install -y dirmngr ca-certificates software-properties-common apt-transport-https dkms curl
+
+
+apt install -y nvim git btop
 
 # Add NVIDIA package repository GPG key
 curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub | \
