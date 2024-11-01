@@ -14,15 +14,13 @@ apt install -y build-essential dkms pve-headers-$(uname -r)
 apt install -y dirmngr ca-certificates software-properties-common apt-transport-https dkms curl
 
 
-apt install -y nvim git btop tmux
+apt install -y neovim git btop tmux
 
 # Add NVIDIA package repository GPG key
-curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub | \
-gpg --dearmor -o /usr/share/keyrings/nvidia-drivers.gpg
+curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub | gpg --dearmor -o /usr/share/keyrings/nvidia-drivers.gpg
 
 # Add NVIDIA package repository
-echo 'deb [signed-by=/usr/share/keyrings/nvidia-drivers.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /' | \
-tee /etc/apt/sources.list.d/nvidia-drivers.list
+echo 'deb [signed-by=/usr/share/keyrings/nvidia-drivers.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian14/x86_64/ /' | tee /etc/apt/sources.list.d/nvidia-drivers.list
 
 # Update package lists again
 apt update
