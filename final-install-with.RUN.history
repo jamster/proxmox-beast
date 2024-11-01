@@ -1,0 +1,126 @@
+    1  exit
+    2  apt update && apt upgrade
+    3  apt install -y neovim git btop tmux
+    4  apt install lshw -y
+    5  lshw
+    6  lshw | grep vga
+    7  lshw | grep nvidia
+    8  lshw | grep -i vga
+    9  lshw | grep -i nvid
+   10  lshw 
+   11  vim /etc/default/grub
+   12  update-grub
+   13  reboot now
+   14  apt install -y dirmngr ca-certificates software-properties-common apt-transport-https dkms curl
+   15  echo "blacklist nouveau" >> /etc/modprobe.d/blacklist-nouveau.conf
+   16  echo "options nouveau modeset=0" >> /etc/modprobe.d/blacklist-nouveau.conf
+   17  update-initramfs -u
+   18  apt update
+   19  apt upgrade
+   20  reboot now
+   21  curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub | gpg --dearmor -o /usr/share/keyrings/nvidia-drivers.gpg
+   22  echo 'deb [signed-by=/usr/share/keyrings/nvidia-drivers.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /' | tee /etc/apt/sources.list.d/nvidia-drivers.list
+   23  apt update && apt upgrade
+   24  apt install -y nvidia-open-560
+   25  apt install -y nvidia-open
+   26  nvidia-smi
+   27  reboot
+   28  nvidia-smi
+   29  sudo apt-get remove --purge '^nvidia-.*'
+   30  sudo apt-get remove --purge '^libnvidia-.*'
+   31  sudo apt-get remove --purge '^cuda-.*'
+   32  apt update
+   33  apt upgrade
+   34  apt autoremove
+   35  nvidia-smi
+   36  git clone git@github.com:jamster/proxmox-beast.git
+   37  cd proxmox-beast/
+   38  cat setup_scripts/nvidia-pin > /etc/apt/preferences.d/nvidia-pin
+   39  apt install -y nvidia-open-560
+   40  apt install -y nvidia-open-560
+   41  reboot now
+   42  apt install -y nvidia-open-560
+   43  dpkg -l |grep nvidia
+   44  dpkg-divert --list
+   45  sudo lshw -C display
+   46  apt install -y nvidia-open-560
+   47  apt install -y --forced-install nvidia-open-560
+   48  apt install -y --force-install nvidia-open-560
+   49  apt install --force-install nvidia-open-560
+   50  apt-get install nvidia-open-560
+   51  rm /etc/apt/sources.list.d/nvidia-drivers.list 
+   52  apt-get install nvidia-open-560
+   53  vim /etc/apt/sources.list
+   54  apt install -y nvidia-driver=560.35.03-1
+   55  echo 'deb [signed-by=/usr/share/keyrings/nvidia-drivers.gpg] https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/ /' | tee /etc/apt/sources.list.d/nvidia-drivers.list
+   56  apt install -y nvidia-driver=560.35.03-1
+   57  apt-cache policy
+   58  apt install -y nvidia-driver=560.35.03-1
+   59  apt update
+   60  apt install aptitude
+   61  aptitude install nvidia-driver=560.35.03-1
+   62  apt install -y nvidia-driver=560.35.03-1 nvidia-driver-libs=560.35.03-1 xserver-xorg-video-nvidia=560.35.03-1 nvidia-vdpau-driver=560.35.03-1 nvidia-kernel-dkms=560.35.03-1 nvidia-settings=560.35.03-1 libnvidia-cfg1=560.35.03-1 nvidia-persistenced=560.35.03-1
+   63  aptitude install -y nvidia-driver-560
+   64  aptitude install -y nvidia-open-560
+   65  aptitude install -y nvidia-open-560
+   66  aptitude install -y nvidia-open-560 --force
+   67  vim /etc/apt/preferences.d/nvidia-pin 
+   68  apt update
+   69  apt install -y nvidia-driver=560.35.03-1
+   70  vim /etc/apt/preferences.d/nvidia-pin 
+   71  apt install -y nvidia-driver=560.35.03-1
+   72  apt install -y nvidia-smi=560.35.03-1
+   73  apt install -y nvidia-settings=560.35.03-1
+   74  apt install -y nvidia-settings=560.35.03-1
+   75  apt install -y libxnvctrl0=560.35.03-1
+   76  apt install -y nvidia-settings=560.35.03-1
+   77  nvidia-smi 
+   78  reboot
+   79  nvidia-smi 
+   80  shutdown now
+   81  nvidia-smi 
+   82  nvidia-smi 
+   83  history | grep purge
+   84  history | grep purge > purge.sh
+   85  vim purge.sh 
+   86  chmod +x purge.sh 
+   87  ./purge.sh 
+   88  apt autoremove
+   89  lspci | grep -i nvidia
+   90  uname -m && cat /etc/*release
+   91  gcc --version
+   92  wget https://developer.download.nvidia.com/compute/cuda/12.6.2/local_installers/cuda_12.6.2_560.35.03_linux.run
+   93  wget  https://us.download.nvidia.com/XFree86/Linux-x86_64/550.127.05/NVIDIA-Linux-x86_64-550.127.05.run
+   94  ls
+   95  chmod +x NVIDIA-Linux-x86_64-550.127.05.run 
+   96  ./NVIDIA-Linux-x86_64-550.127.05.run 
+   97  ./NVIDIA-Linux-x86_64-550.127.05.run 
+   98  history | grep pve
+   99  apt install -y build-essential dkms pve-headers-$(uname -r)
+  100  apt install -y build-essential dkms pve-headers-$(uname -r)
+  101  ./NVIDIA-Linux-x86_64-550.127.05.run 
+  102  reboot now
+  103  btop
+  104  ./NVIDIA-Linux-x86_64-550.127.05.run 
+  105  nvidia-smi
+  106  chmod +x cuda_12.6.2_560.35.03_linux.run 
+  107  ./cuda_12.6.2_560.35.03_linux.run 
+  108  nvtop
+  109  apt install nvtop
+  110  nvtop
+  111  wget https://cdn.geekbench.com/Geekbench-6.3.0-Linux.tar.gz
+  112  tar xvfz Geekbench-6.3.0-Linux.tar.gz 
+  113  cd Geekbench-6.3.0-Linux/
+  114  ./geekbench6 --gpu
+  115  ./geekbench6
+  116  reboot now
+  117  btop
+  118  nvtop
+  119  apt install lm-sensors
+  120  sensors-detect
+  121  watch sensors
+  122  sensors
+  123  watch sensors
+  124  nvtop
+  125  btop
+  126  history > proxmox-beast/final-install-with.RUN.history
