@@ -29,6 +29,13 @@ echo 'deb [signed-by=/usr/share/keyrings/nvidia-drivers.gpg] https://developer.d
 # Update package lists again
 apt update
 
+#### PLEASE READ ######
+# 2024/10/30
+# Looks like nvidia updated half their packages (i don't even know what that means)
+# Someone has a solution here:
+# https://forums.developer.nvidia.com/t/missing-packages-in-compute-cuda-repos-debian12-apt-repo/311742/4
+
+
 # Install NVIDIA drivers and utilities
 apt install -y nvidia-driver=560.35.03-1
 apt install -y cuda nvidia-smi nvidia-settings 
