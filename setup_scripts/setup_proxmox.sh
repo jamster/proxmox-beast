@@ -13,8 +13,12 @@ apt install -y build-essential dkms pve-headers-$(uname -r)
 # Install necessary packages
 apt install -y dirmngr ca-certificates software-properties-common apt-transport-https dkms curl
 
-
+# Install tools
 apt install -y neovim git btop tmux
+
+# cat /etc/apt/preferences.d/nvidia-pin > ~/proxmox-beast/setup_scripts/nvidia-pin
+cat nvidia-pin > /etc/apt/preferences.d/nvidia-pin
+
 
 # Add NVIDIA package repository GPG key
 curl -fsSL https://developer.download.nvidia.com/compute/cuda/repos/debian12/x86_64/3bf863cc.pub | gpg --dearmor -o /usr/share/keyrings/nvidia-drivers.gpg
