@@ -4,7 +4,7 @@
 # This script sets up NVIDIA drivers and NVIDIA container toolkit on the Proxmox host.
 
 # Update package lists
-apt update
+apt update && apt upgrade
 
 # Install Proxmox VE headers
 apt install -y build-essential dkms pve-headers-$(uname -r)
