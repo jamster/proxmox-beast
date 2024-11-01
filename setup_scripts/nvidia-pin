@@ -1,0 +1,8 @@
+Package: nvidia-driver
+Pin: version 560.35.03-1
+Pin-Priority: 1001
+
+Package: nvidia-driver 
+Pin: version 565*
+Pin-Priority: -1
+
