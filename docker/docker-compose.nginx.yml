@@ -15,9 +15,9 @@ services:
 
 volumes:
   nginx_data:
-    external: true
+    external: false
   nginx_letsencrypt:
-    external: true
+    external: false
 
 networks:
   proxy_network:

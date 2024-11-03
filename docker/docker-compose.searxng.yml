@@ -53,7 +53,7 @@ services:
 
 volumes:
   redis_data:
-    external: true
+    external: false
 
 networks:
   app_network:
