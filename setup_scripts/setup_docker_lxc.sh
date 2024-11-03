@@ -1,10 +1,12 @@
 #!/bin/bash
 
+# bash -c "$(wget -qLO - https://github.com/tteck/Proxmox/raw/main/ct/docker.sh)"
 # setup_docker_lxc.sh
 # This script sets up NVIDIA drivers and NVIDIA container toolkit inside the Docker LXC container.
 
 # Update and upgrade packages
 sudo apt update -y && sudo apt upgrade -y
+apt install -y neovim git btop tmux lshw 
 
 # Install necessary packages
 sudo apt install -y gpg nvtop glances git dirmngr ca-certificates software-properties-common apt-transport-https dkms curl
@@ -21,7 +23,7 @@ sudo tee /etc/apt/sources.list.d/nvidia-drivers.list
 sudo apt update
 
 # Install NVIDIA drivers and utilities
-sudo apt install -y nvidia-driver cuda nvidia-smi nvidia-settings
+sudo apt install -y nvidia-driver nvidia-cuda-driver  nvidia-settings
 
 # Install NVIDIA container toolkit
 sudo apt install -y nvidia-container-toolkit

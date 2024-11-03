@@ -44,12 +44,12 @@ echo 'deb [signed-by=/usr/share/keyrings/nvidia-drivers.gpg] https://developer.d
 apt update
 
 # This is more important than the next PLEASE READ, so do this for now:
-wget https://developer.download.nvidia.com/compute/cuda/12.6.2/local_installers/cuda_12.6.2_560.35.03_linux.run
-wget  https://us.download.nvidia.com/XFree86/Linux-x86_64/550.127.05/NVIDIA-Linux-x86_64-550.127.05.run
-chmod +x NVIDIA-Linux-x86_64-550.127.05.run 
-./NVIDIA-Linux-x86_64-550.127.05.run 
-chmod +x cuda_12.6.2_560.35.03_linux.run 
-./cuda_12.6.2_560.35.03_linux.run 
+# wget https://developer.download.nvidia.com/compute/cuda/12.6.2/local_installers/cuda_12.6.2_560.35.03_linux.run
+# wget  https://us.download.nvidia.com/XFree86/Linux-x86_64/550.127.05/NVIDIA-Linux-x86_64-550.127.05.run
+# chmod +x NVIDIA-Linux-x86_64-550.127.05.run 
+# chmod +x cuda_12.6.2_560.35.03_linux.run 
+# ./NVIDIA-Linux-x86_64-550.127.05.run 
+# ./cuda_12.6.2_560.35.03_linux.run 
 
 
 
@@ -61,8 +61,8 @@ chmod +x cuda_12.6.2_560.35.03_linux.run
 
 
 # Install NVIDIA drivers and utilities
-apt install -y nvidia-driver=560.35.03-1
-apt install -y cuda nvidia-smi nvidia-settings 
+apt install -y nvidia-driver
+apt install -y nvidia-cuda-driver 
 apt install -y nvtop
 
 # Install NVIDIA container toolkit
