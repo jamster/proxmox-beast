@@ -4,6 +4,8 @@ services:
   piper:
     image: rhasspy/wyoming-piper:latest
     restart: unless-stopped
+    ports:
+      - 10200:10200
     devices:
       - /dev/nvidia0:/dev/nvidia0
       - /dev/nvidia1:/dev/nvidia1
