@@ -1,8 +1,8 @@
 version: '3'
 
 services:
-  wyoming-whisper:
-    image: rhasspy/wyoming-whisper:latest
+  piper:
+    image: rhasspy/wyoming-piper:latest
     restart: unless-stopped
     devices:
       - /dev/nvidia0:/dev/nvidia0
@@ -11,11 +11,8 @@ services:
       - /dev/nvidia-uvm:/dev/nvidia-uvm
       - /dev/nvidia-uvm-tools:/dev/nvidia-uvm-tools
     volumes:
-      - /data/wyoming-whisper:/data
-    environment:
-      - WHISPER_MODEL=medium
-      - WHISPER_LANGUAGE=en
-    command: --model medium --language en --uri 'tcp://0.0.0.0:10300'
+      - /data/piper:/data
+    command: --voice en-us-ryan-high --uri 'tcp://0.0.0.0:10200'
     networks:
       - app_network
 
