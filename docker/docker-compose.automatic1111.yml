@@ -1,30 +1,35 @@
 services:
   stable-diffusion-webui:
-    build:
-      context: .
-      dockerfile: Dockerfile.auto1111
+    image: universonic/stable-diffusion-webui:latest
     container_name: stable-diffusion
-    environment:
-      - CLI_ARGS=--listen --port 7860 --opt-sdp-no-mem-attention --xformers
-    volumes:
-      - stable_diffusion_data:/stable-diffusion-webui
-      - /data/stable-diffusion/models:/stable-diffusion-webui/models
-      - /data/stable-diffusion/outputs:/stable-diffusion-webui/outputs
-      - /data/stable-diffusion/extensions:/stable-diffusion-webui/extensions
-    ports:
-      - "7860:7860"
-    networks:
-      - app_network
     restart: unless-stopped
+    privileged: true
+    volumes:
+      - stable_diffusion_data:/app/stable-diffusion-webui
+      - /data/stable-diffusion/models:/app/stable-diffusion-webui/models
+      - /data/stable-diffusion/outputs:/app/stable-diffusion-webui/outputs
+      - /data/stable-diffusion/extensions:/app/stable-diffusion-webui/extensions
+    ports:
+      - "7860:8080"
     deploy:
       resources:
         reservations:
           devices:
             - driver: nvidia
-              capabilities: [gpu]
-    command: bash -c "python launch.py"
+              count: all
+              capabilities:
+                - gpu
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility
+    runtime: nvidia
+    networks:
+      - app_network
 
 volumes:
   stable_diffusion_data:
-    external: true
+    external: false
 
+networks:
+  app_network:
+    external: true

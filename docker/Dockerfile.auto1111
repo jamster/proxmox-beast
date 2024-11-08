@@ -1,7 +1,9 @@
-FROM ghcr.io/automatic1111/stable-diffusion-webui:latest
+FROM universonic/stable-diffusion-webui:latest
 
-# Install extensions
-RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg extensions/stable-diffusion-webui-rembg
-RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-pixelization extensions/stable-diffusion-webui-pixelization
-RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-promptgen extensions/stable-diffusion-webui-promptgen
+# Set the working directory
+WORKDIR /app/stable-diffusion-webui/extensions
 
+# Clone the extensions
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-pixelization
+RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-promptgen

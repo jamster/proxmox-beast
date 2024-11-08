@@ -53,4 +53,9 @@ volumes:
       type: none
       o: bind
       device: /data/piper
-
+  stable_diffusion_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/stable-diffusion

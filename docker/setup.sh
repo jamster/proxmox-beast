@@ -12,6 +12,8 @@ sudo mkdir -p /data/nginx/letsencrypt
 sudo mkdir -p /data/dockage/opt/stacks
 sudo mkdir -p /data/homepage
 sudo mkdir -p /data/portainer
+sudo mkdir -p /data/stable-diffusion
+
 
 # Set permissions
 sudo chown -R 1000:1000 /data
