@@ -51,5 +51,11 @@ docker compose -f docker-compose.yml \
                -f docker-compose.n8n.yml \
                -f docker-compose.nginx.yml \
                -f docker-compose.homepage.yml \
+               -f docker-compose.automatic1111.yml \
+               -f docker-compose.cloudflare-n8n.yml \
+               -f docker-compose.cloudflare-openwebui.yml \
+               -f docker-compose.n8n.yml \
+               -f docker-compose.piper.yml \
+               -f docker-compose.wyoming-whisper.yml \
                -f docker-compose.portainer.yml up -d
 

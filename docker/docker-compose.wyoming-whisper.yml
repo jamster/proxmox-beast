@@ -1,22 +1,27 @@
-version: '3'
-
 services:
   wyoming-whisper:
     image: rhasspy/wyoming-whisper:latest
+    container_name: wyoming-whisper
     restart: unless-stopped
     ports:
       - 10300:10300
-    devices:
-      - /dev/nvidia0:/dev/nvidia0
-      - /dev/nvidia1:/dev/nvidia1
-      - /dev/nvidiactl:/dev/nvidiactl
-      - /dev/nvidia-modeset:/dev/nvidia-modeset
-      - /dev/nvidia-uvm:/dev/nvidia-uvm
     volumes:
       - /data/wyoming-whisper:/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
     environment:
       - WHISPER_MODEL=medium
       - WHISPER_LANGUAGE=en
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - USE_GPU=1
+    runtime: nvidia  # Specify the NVIDIA runtime
     command: --model medium --language en --uri 'tcp://0.0.0.0:10300'
     networks:
       - app_network

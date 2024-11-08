@@ -1,7 +1,7 @@
 services:
-  cloudflared:
+  cloudflared-n8n:
     image: cloudflare/cloudflared:latest
-    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TUNNEL_TOKEN}
+    command: tunnel --no-autoupdate run --token ${CF_TUNN_N8N}
     env_file:
       - .env
 
