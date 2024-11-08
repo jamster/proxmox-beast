@@ -1,0 +1,30 @@
+services:
+  stable-diffusion-webui:
+    build:
+      context: .
+      dockerfile: Dockerfile.auto1111
+    container_name: stable-diffusion
+    environment:
+      - CLI_ARGS=--listen --port 7860 --opt-sdp-no-mem-attention --xformers
+    volumes:
+      - stable_diffusion_data:/stable-diffusion-webui
+      - /data/stable-diffusion/models:/stable-diffusion-webui/models
+      - /data/stable-diffusion/outputs:/stable-diffusion-webui/outputs
+      - /data/stable-diffusion/extensions:/stable-diffusion-webui/extensions
+    ports:
+      - "7860:7860"
+    networks:
+      - app_network
+    restart: unless-stopped
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+    command: bash -c "python launch.py"
+
+volumes:
+  stable_diffusion_data:
+    external: true
+
