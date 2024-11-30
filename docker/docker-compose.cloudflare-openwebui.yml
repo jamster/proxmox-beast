@@ -1,6 +1,7 @@
 services:
   cloudflared-owui:
     image: cloudflare/cloudflared:latest
+    restart: unless-stopped
     command: tunnel --no-autoupdate run --token ${CF_TUNN_OPENWEBUI}
     env_file:
       - .env

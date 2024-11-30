@@ -26,7 +26,7 @@ hostname: docker
 # Change cores
 # Make it privileged
 sudo sed -i 's/memory: 2048/memory: 65536/' $CONF_FILE 
-sudo sed -i 's/cores: 2/cores 16/' $CONF_FILE 
+sudo sed -i 's/cores: 2/cores 32/' $CONF_FILE 
 sudo sed -i 's/unprivileged: 0/unprivileged: 1/' $CONF_FILE 
 
 # Add cgroup device permissions

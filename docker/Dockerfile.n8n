@@ -1,0 +1,14 @@
+# Extend the official n8n Docker image
+FROM n8nio/n8n:latest
+
+# Switch to root user to install global npm packages
+USER root
+
+# Install necessary libraries for scraping and parsing
+RUN npm install -g \
+  node-fetch \
+  youtube-transcript \
+  fast-xml-parser
+
+# Revert back to the node user
+USER node

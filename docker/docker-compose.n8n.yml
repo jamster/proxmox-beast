@@ -1,6 +1,8 @@
 services:
   n8n:
-    image: n8nio/n8n
+    build:
+      context: .
+      dockerfile: Dockerfile.n8n
     container_name: n8n
     restart: unless-stopped
     ports:
@@ -10,6 +12,8 @@ services:
     environment:
       - N8N_HOST=n8n-beast.fucksafety.com
       - WEBHOOK_URL=https://n8n-beast.fucksafety.com/
+      - NODE_FUNCTION_ALLOW_EXTERNAL=*
+      # Uncomment and configure the following for basic auth
       # - N8N_BASIC_AUTH_USER=${N8N_BASIC_AUTH_USER}
       # - N8N_BASIC_AUTH_ACTIVE=true
       # - N8N_BASIC_AUTH_PASSWORD=${N8N_BASIC_AUTH_PASSWORD}
