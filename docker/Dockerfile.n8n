@@ -8,7 +8,8 @@ USER root
 RUN npm install -g \
   node-fetch \
   youtube-transcript \
-  fast-xml-parser
+  fast-xml-parser \ 
+  xmldom
 
 # Revert back to the node user
 USER node
