@@ -24,3 +24,7 @@ services:
 networks:
   app_network:
     external: true 
+
+volumes:
+  postgres_data:
+  postgres_backups:
