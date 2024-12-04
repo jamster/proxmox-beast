@@ -71,3 +71,9 @@ volumes:
       type: none
       o: bind
       device: /data/postgres/backups
+  registry_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /data/registry
