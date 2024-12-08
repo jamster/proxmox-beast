@@ -1,6 +1,10 @@
 services:
   postgres:
-    image: postgres:16
+    # image: postgres:16
+    # image: ankane/pgvector:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.pgvector
     container_name: postgres
     restart: unless-stopped
     environment:

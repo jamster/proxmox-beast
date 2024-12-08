@@ -1,0 +1,21 @@
+# Specify PostgreSQL major version
+ARG PG_MAJOR=16
+FROM postgres:$PG_MAJOR
+ARG PG_MAJOR
+
+# Install dependencies, including CA certificates
+RUN apt-get update && \
+    apt-mark hold locales && \
+    apt-get install -y --no-install-recommends build-essential git ca-certificates postgresql-server-dev-$PG_MAJOR && \
+    git config --global http.sslVerify true && \
+    git clone https://github.com/pgvector/pgvector.git /tmp/pgvector && \
+    cd /tmp/pgvector && \
+    make OPTFLAGS="" && \
+    make install && \
+    mkdir /usr/share/doc/pgvector && \
+    cp LICENSE README.md /usr/share/doc/pgvector && \
+    rm -r /tmp/pgvector && \
+    apt-get remove -y build-essential git postgresql-server-dev-$PG_MAJOR && \
+    apt-get autoremove -y && \
+    apt-mark unhold locales && \
+    rm -rf /var/lib/apt/lists/*

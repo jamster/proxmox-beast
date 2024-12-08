@@ -1,6 +1,9 @@
 services:
   registry:
-    image: registry:2
+    build:
+      context: .
+      dockerfile: Dockerfile.registry
+    # image: registry:2
     container_name: registry
     restart: unless-stopped
     environment:
@@ -18,7 +21,7 @@ services:
       - app_network
       - proxy_network
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:5000/v2/"]
+      test: ["CMD", "curl", "-u", "${REGISTRY_USER}:${REGISTRY_PASSWORD}", "-f", "http://localhost:5000/v2/"]
       interval: 30s
       timeout: 10s
       retries: 3

@@ -1,0 +1,9 @@
+# Use the official registry image as a base
+FROM registry:2
+
+# Install curl using Alpine's package manager
+RUN apk add --no-cache curl
+
+# Preserve the original entrypoint and CMD
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["serve", "/etc/docker/registry/config.yml"]
