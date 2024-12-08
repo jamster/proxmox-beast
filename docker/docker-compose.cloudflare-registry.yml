@@ -1,0 +1,8 @@
+services:
+  cloudflared-registry:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CF_TUNN_REG}
+    env_file:
+      - .env
+
