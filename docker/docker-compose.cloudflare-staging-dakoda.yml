@@ -1,0 +1,7 @@
+services:
+  cloudflared-staging-dakoda:
+    image: cloudflare/cloudflared:latest
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run --token ${CF_TUNN_STAGE_DAKODA}
+    env_file:
+      - .env
