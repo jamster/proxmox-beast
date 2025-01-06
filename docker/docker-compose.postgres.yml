@@ -1,17 +1,15 @@
 services:
   postgres:
-    # image: postgres:16
-    # image: ankane/pgvector:latest
-    build:
-      context: .
-      dockerfile: Dockerfile.pgvector
+    image: timescale/timescaledb-ha:pg17
     container_name: postgres
     restart: unless-stopped
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
       PGDATA: /data/postgres
+      OPENAI_API_KEY: testing123
+    command: [ "-c", "ai.ollama_host=http://192.168.1.37:11434" ]
     volumes:
       - postgres_data:/data/postgres
       - postgres_backups:/backups
@@ -24,6 +22,16 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+  vectorizer-worker:
+    image: timescale/pgai-vectorizer-worker:latest
+    environment:
+      PGAI_VECTORIZER_WORKER_DB_URL: postgres://postgres:postgres@postgres:5432/postgres
+      OLLAMA_HOST: http://192.168.1.37:11434
+      OPENAI_API_KEY: testing123
+    command: [ "--poll-interval", "5s", "--log-level", "DEBUG" ]
+    restart: unless-stopped
+    networks:
+      - app_network
 
 networks:
   app_network:
@@ -32,3 +40,38 @@ networks:
 volumes:
   postgres_data:
   postgres_backups:
+
+# services:
+#   postgres:
+#     # image: postgres:16
+#     # image: ankane/pgvector:latest
+#     build:
+#       context: .
+#       dockerfile: Dockerfile.pgvector
+#     container_name: postgres
+#     restart: unless-stopped
+#     environment:
+#       POSTGRES_USER: ${POSTGRES_USER:-postgres}
+#       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+#       POSTGRES_DB: ${POSTGRES_DB:-postgres}
+#       PGDATA: /data/postgres
+#     volumes:
+#       - postgres_data:/data/postgres
+#       - postgres_backups:/backups
+#     ports:
+#       - "5432:5432"
+#     networks:
+#       - app_network
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U postgres"]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 5
+# 
+# networks:
+#   app_network:
+#     external: true 
+# 
+# volumes:
+#   postgres_data:
+#   postgres_backups:
