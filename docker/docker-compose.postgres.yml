@@ -39,7 +39,9 @@ networks:
 
 volumes:
   postgres_data:
+    external: true
   postgres_backups:
+    external: true
 
 # services:
 #   postgres:

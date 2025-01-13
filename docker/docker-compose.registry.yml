@@ -26,6 +26,10 @@ services:
       timeout: 10s
       retries: 3
 
+volumes:
+  registry_data:
+    external: true
+
 networks:
   app_network:
     external: true
