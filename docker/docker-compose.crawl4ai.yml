@@ -1,0 +1,10 @@
+services:
+  crawl4ai:
+    image: unclecode/crawl4ai:gpu-amd64
+    container_name: crawl4ai_service
+    ports:
+      - "11235:11235"
+    environment:
+      # Uncomment and set your API token for security
+      CRAWL4AI_API_TOKEN: testing123crawl!!!A#@9asdfjkk89i23hnci9
+    restart: unless-stopped
